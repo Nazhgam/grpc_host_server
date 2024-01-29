@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package mypackage;  // Add this line to specify the Go package name
+
+option go_package = "./api_pb_host";
+
+service Hosts {
+  rpc AddQuestion(HostReqeust) returns (HostResponse);
+}
+
+message HostReqeust {
+    string Question = 1;
+    repeated string WrongAns = 2;
+    string CorrectAns = 3;
+}
+
+message HostResponse {
+  int32 Status = 1;
+}
