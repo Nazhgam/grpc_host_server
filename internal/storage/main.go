@@ -2,8 +2,9 @@ package storage
 
 import (
 	"database/sql"
-	"first_proto/api_pb_host"
 	"fmt"
+
+	"github.com/Nagzham/grpc_host_server/pkg/api/editor"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -13,7 +14,7 @@ type storage struct {
 }
 
 type Storage interface {
-	InsertHost(req *api_pb_host.HostReqeust) (int, error)
+	InsertHost(req *editor.AddQuestionToQuizRequest) (int, error)
 }
 
 func NewStorage() (Storage, error) {

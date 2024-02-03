@@ -1,4 +1,4 @@
-module first_proto
+module github.com/Nagzham/grpc_host_server
 
 go 1.18
 

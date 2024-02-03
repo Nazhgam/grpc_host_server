@@ -21,4 +21,3 @@ func (s *storage) createTables() error {
 	_, err := s.db.Exec(createHostTable)
 	return err
 }
-
