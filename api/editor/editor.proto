@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package editor;  // Add this line to specify the Go package name
+
+option go_package = "github.com/Nagzham/grpc_host_server/pkg/api/editor";
+
+service QuizService {
+ rpc CreateQuiz(CreateQuizRequest) returns (CreateQuizResponse);
+ rpc GetAllQuizzes(GetAllQuizzesRequest) returns (GetAllQuizzesResponse);
+ rpc AddQuestionToQuiz(AddQuestionToQuizRequest) returns (AddQuestionToQuizResponse);
+ rpc GetQuizQuestions(GetQuizQuestionsRequest) returns (GetQuizQuestionsResponse);
+ rpc EditQuestionInQuiz(EditQuestionInQuizRequest) returns (EditQuestionInQuizResponse);
+}
+
+message CreateQuizRequest {
+ string title = 1;
+ string description = 2;
+}
+
+message CreateQuizResponse {
+ int32 quiz_id = 1;
+}
+
+message GetAllQuizzesRequest {}
+
+message GetAllQuizzesResponse {
+ repeated Quiz quizzes = 1;
+}
+
+message Quiz {
+ int32 id = 1;
+ string title = 2;
+ string description = 3;
+}
+
+message AddQuestionToQuizRequest {
+ int32 quiz_id = 1;
+ string question = 2;
+ repeated string wrong_answers = 3;
+ string correct_answer = 4;
+}
+
+message AddQuestionToQuizResponse {}
+
+message GetQuizQuestionsRequest {
+ int32 quiz_id = 1;
+}
+
+message GetQuizQuestionsResponse {
+ repeated Question questions = 1;
+}
+
+message Question {
+ int32 id = 1;
+ string question = 2;
+ repeated string wrong_answers = 3;
+ string correct_answer = 4;
+}
+
+message EditQuestionInQuizRequest {
+ int32 quiz_id = 1;
+ int32 question_id = 2;
+ string new_question = 3;
+ repeated string new_wrong_answers = 4;
+ string new_correct_answer = 5;
+}
+
+message EditQuestionInQuizResponse {}
