@@ -27,8 +27,17 @@ func NewHostsServer() *HostServer {
 	}
 }
 
-func (HostServer) CreateQuiz(context.Context, *editor.CreateQuizRequest) (*editor.CreateQuizResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateQuiz not implemented")
+func (h *HostServer) CreateQuiz(ctx context.Context, req *editor.CreateQuizRequest) (*editor.CreateQuizResponse, error) {
+	id, err := h.db.InsertQuiz(req)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
+	if id == 0 {
+		return nil, fmt.Errorf("error while insert to host table. inserted id=0")
+	}
+	return &editor.CreateQuizResponse{QuizId: id}, nil
 }
 func (HostServer) GetAllQuizzes(context.Context, *editor.GetAllQuizzesRequest) (*editor.GetAllQuizzesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllQuizzes not implemented")

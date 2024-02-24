@@ -3,10 +3,11 @@ package storage
 import (
 	"database/sql"
 	"fmt"
+	"os"
 
 	"github.com/Nagzham/grpc_host_server/pkg/api/editor"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/lib/pq"
 )
 
 type storage struct {
@@ -14,11 +15,12 @@ type storage struct {
 }
 
 type Storage interface {
+	InsertQuiz(req *editor.CreateQuizRequest) (int64, error)
 	InsertHost(req *editor.AddQuestionToQuizRequest) (int, error)
 }
 
 func NewStorage() (Storage, error) {
-	db, err := sql.Open("sqlite3", "test.db")
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		fmt.Println("Error opening database:", err)
 		return nil, err

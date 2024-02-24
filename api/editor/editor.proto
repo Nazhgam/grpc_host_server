@@ -18,7 +18,7 @@ message CreateQuizRequest {
 }
 
 message CreateQuizResponse {
- int32 quiz_id = 1;
+ int64 quiz_id = 1;
 }
 
 message GetAllQuizzesRequest {}
@@ -28,13 +28,13 @@ message GetAllQuizzesResponse {
 }
 
 message Quiz {
- int32 id = 1;
+ int64 id = 1;
  string title = 2;
  string description = 3;
 }
 
 message AddQuestionToQuizRequest {
- int32 quiz_id = 1;
+ int64 quiz_id = 1;
  string question = 2;
  repeated string wrong_answers = 3;
  string correct_answer = 4;
@@ -43,7 +43,7 @@ message AddQuestionToQuizRequest {
 message AddQuestionToQuizResponse {}
 
 message GetQuizQuestionsRequest {
- int32 quiz_id = 1;
+ int64 quiz_id = 1;
 }
 
 message GetQuizQuestionsResponse {
@@ -51,15 +51,15 @@ message GetQuizQuestionsResponse {
 }
 
 message Question {
- int32 id = 1;
+ int64 id = 1;
  string question = 2;
  repeated string wrong_answers = 3;
  string correct_answer = 4;
 }
 
 message EditQuestionInQuizRequest {
- int32 quiz_id = 1;
- int32 question_id = 2;
+ int64 quiz_id = 1;
+ int64 question_id = 2;
  string new_question = 3;
  repeated string new_wrong_answers = 4;
  string new_correct_answer = 5;

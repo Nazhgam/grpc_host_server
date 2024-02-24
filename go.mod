@@ -1,9 +1,9 @@
 module github.com/Nagzham/grpc_host_server
 
-go 1.18
+go 1.19
 
 require (
-	github.com/mattn/go-sqlite3 v1.14.20
+	github.com/lib/pq v1.10.9
 	google.golang.org/grpc v1.61.0
 	google.golang.org/protobuf v1.32.0
 )
